@@ -5,7 +5,6 @@ import './product_detail.dart';
 
 class ProductList extends StatefulWidget {
   final List products;
-
   ProductList({Key key, this.products}) : super(key: key);
 
   @override
@@ -15,11 +14,27 @@ class ProductList extends StatefulWidget {
 
 class _ProductListState extends State<ProductList>{
 
+  ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+      
+
+    _scrollController.addListener((){
+      if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent){
+       //insert scroll event 
+      }
+    });
     return Scaffold (
       body: SafeArea(
         child: ListView.builder(
+          controller: _scrollController,
           itemCount: widget.products.length,
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
@@ -34,23 +49,6 @@ class _ProductListState extends State<ProductList>{
               },
             );
           },)
-      //   child: Column (children: <Widget>[
-      //   GestureDetector(
-      //     onTap: () {
-      //       print(widget.products[0].runtimeType);
-      //       Navigator.push(
-      //         context,
-      //         MaterialPageRoute(
-      //           builder: (context) => ProductDetail(product: widget.products[0]), 
-      //         ),
-      //       );
-      //     },
-      //     child: Text("${widget.products[0]["name"]}"),
-      //     ),
-      //   Text("${widget.products[1]["name"]}"),
-      //   Text("${widget.products[2]["name"]}"),
-      //   Text("${widget.products[3]["name"]}")
-      // ],),
         )
     );
   }
