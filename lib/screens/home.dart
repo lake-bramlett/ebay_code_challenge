@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../seach_bar.dart';
+import '../search_bar.dart';
 
 class Home extends StatefulWidget {
   @override

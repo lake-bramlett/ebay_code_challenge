@@ -14,7 +14,7 @@ class SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onSubmitted: (value) { _searchAndRedirect(); },
+      onSubmitted: (inputValue) { _searchAndRedirect(inputValue); },
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
@@ -24,13 +24,13 @@ class SearchBarState extends State<SearchBar> {
     );
   }
 
-  void _searchAndRedirect() async {
-    var response = await Api.getData("https://swapi.co/api/people");
+  void _searchAndRedirect(input) async {
+    var response = await Api.getData("https://api.ebay.com/buy/browse/v1/item_summary/search?q=${input}");
     //Handle redirect to ProductList
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ProductList(products: response.results, nextPage: response.nextPage), 
+        builder: (context) => ProductList(products: response.results, nextPage: response.nextPage, searchInput: input), 
         ),
     );
   }

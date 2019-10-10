@@ -5,8 +5,9 @@ import 'package:flutter/cupertino.dart';
 class ProductDetail extends StatefulWidget {
 
   final product;
+  final productTerm;
 
-  ProductDetail({Key key, this.product}) : super(key: key);
+  ProductDetail({Key key, this.product, this.productTerm}) : super(key: key);
 
   @override
   _ProductDetailState createState() => _ProductDetailState();
@@ -16,13 +17,32 @@ class _ProductDetailState extends State<ProductDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold (
-      body: SafeArea(
-        child: Column(children: <Widget>[
-          Text("${widget.product["name"]}"),
-          Text("${widget.product["gender"]}")
+      appBar: AppBar(
+        title: Text('Back to "${widget.productTerm}" results'),
+      ),
+      body: ListView(
+        children: <Widget>[
+          Container(child: 
+            Text(
+              "${widget.product["title"]}",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Container(child:
+            Padding(
+              padding: EdgeInsets.all(14.0),
+              child: Text(
+                "${widget.product["shortDescription"]}",
+              ),
+            ),
+          ),
+          Container(child: Image.network(widget.product["image"]["imageUrl"]),),
           ],
         ),
-      )
-    );
+      );
   }
 }
