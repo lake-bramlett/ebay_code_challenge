@@ -24,7 +24,7 @@ class _ProductDetailState extends State<ProductDetail> {
         children: <Widget>[
           Container(child: 
             Text(
-              "${widget.product["title"]}",
+              "${widget.product.title}",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
@@ -36,11 +36,11 @@ class _ProductDetailState extends State<ProductDetail> {
             Padding(
               padding: EdgeInsets.all(14.0),
               child: Text(
-                "${widget.product["shortDescription"]}",
+                "${widget.product.description}",
               ),
             ),
           ),
-          Container(child: Image.network(widget.product["image"]["imageUrl"]),),
+          Container(child: Image.network(widget.product.imgUrl),),
           ],
         ),
       );
