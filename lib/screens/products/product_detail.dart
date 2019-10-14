@@ -16,6 +16,8 @@ class ProductDetail extends StatefulWidget {
 class _ProductDetailState extends State<ProductDetail> {
   @override
   Widget build(BuildContext context) {
+    print(widget.product.title);
+    print(widget.product.description);
     return Scaffold (
       appBar: AppBar(
         title: Text('Back to "${widget.productTerm}" results'),

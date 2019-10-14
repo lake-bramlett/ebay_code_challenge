@@ -25,7 +25,7 @@ class SearchBarState extends State<SearchBar> {
   }
 
   void _searchAndRedirect(input) async {
-    var response = await Api.getData("https://api.ebay.com/buy/browse/v1/item_summary/search?q=${input}");
+    var response = await Api.getFirstProducts(input);
     //Handle redirect to ProductList
     Navigator.push(
       context,
