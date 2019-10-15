@@ -3,11 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import './product_detail.dart';
 import './../../api.dart';
-import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'dart:io';
-import './../../search_bar.dart';
+import '../home.dart';
 import './../../models/product_preview.dart';
 
 
@@ -48,6 +44,7 @@ class _ProductListState extends State<ProductList>{
     });
   }
 
+  //function to handle infinite scroll
   void _addMoreProducts() async {
     if (widget.nextPage == null) {
       // there are no more pages
@@ -65,10 +62,11 @@ class _ProductListState extends State<ProductList>{
 
   void _getProductDetailOnTap(productUrl) async {
     var product =  await Api.getProductDetail(productUrl);
+    print(product.initialImageUrl);
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ProductDetail(product: product, productTerm: widget.searchInput)
+        builder: (context) => ProductDetail(product: product, productTerm: widget.searchInput, productImage: product.initialImageUrl)
       )
     );
   }
@@ -78,6 +76,19 @@ class _ProductListState extends State<ProductList>{
     return Scaffold (
       appBar: AppBar(
         title: Text('Showing results for "${widget.searchInput}"'),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Home(),
+                  )
+                );
+              },
+          )
+        ]
       ),
       body: SafeArea(
         child: ListView.builder(

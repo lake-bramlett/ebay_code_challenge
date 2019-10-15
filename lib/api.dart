@@ -73,7 +73,7 @@ class Api {
   }
 
 
-  // get products 
+  // get products/more products 
   static Future<QueryResult> getProducts(String url) async {
     print(url);
     var token  = await getToken();
@@ -115,7 +115,7 @@ class Api {
 
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
-      var product = Product.fromJson(data);//(data["title"], data["image"]["imageUrl"], data["price"]["value"], data["price"]["currency"], data["itemLocation"]["city"], data["itemLocation"]["stateOrProvince"], data["itemLocation"]["country"], data["shortDescription"]);
+      var product = Product.fromJson(data);
       return product;
     } else {
       throw("no product returned. error code: ${response.statusCode}");

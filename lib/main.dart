@@ -8,22 +8,13 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 Future main() async {
   await DotEnv().load('.env');
   runApp( 
-  MaterialApp(
-  initialRoute: '/',
-  routes: {
-    '/': (context) => Home(),
-    '/products': (context) => ProductList(),
-    '/product': (context) => ProductDetail(),
-  }
-));
+    MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => Home(),
+        '/products': (context) => ProductList(),
+        '/product': (context) => ProductDetail(),
+      }
+    )
+  );
 }
-
-// void main() => runApp( 
-//   MaterialApp(
-//   initialRoute: '/',
-//   routes: {
-//     '/': (context) => Home(),
-//     '/products': (context) => ProductList(),
-//     '/product': (context) => ProductDetail(),
-//   }
-// ));
