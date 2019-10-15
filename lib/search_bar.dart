@@ -26,6 +26,7 @@ class SearchBarState extends State<SearchBar> {
 
   void _searchAndRedirect(input) async {
     var response = await Api.getFirstProducts(input);
+    print("RESPONSE IS A: ${response.results.runtimeType}");
     //Handle redirect to ProductList
     Navigator.push(
       context,

@@ -8,13 +8,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 import './../../search_bar.dart';
-import './../../models/product.dart';
+import './../../models/product_preview.dart';
 
 
 
 
 class ProductList extends StatefulWidget {
-  final List products;
+  final List<ProductPreview> products;
   String nextPage;
   String searchInput;
 
@@ -54,6 +54,8 @@ class _ProductListState extends State<ProductList>{
       return;
     }
     var response = await Api.getProducts(widget.nextPage);
+    print(response.results.runtimeType);
+    
     setState(() {
       widget.products.addAll(response.results);
       widget.nextPage = response.nextPage;
@@ -85,12 +87,12 @@ class _ProductListState extends State<ProductList>{
             print(widget.products[index]);
             return Card (
               child: ListTile(
-                title: Text(widget.products[index]["title"]),
-                subtitle: Text(widget.products[index]["itemId"]),
-                trailing: Image.network(widget.products[index]["image"]["imageUrl"],),
+                title: Text(widget.products[index].title),
+                subtitle: Text(widget.products[index].id),
+                trailing: Image.network(widget.products[index].imageUrl,),
                 onTap: () {
-                  print("item href: ${widget.products[index]["itemHref"]}");
-                  _getProductDetailOnTap(widget.products[index]["itemHref"]);
+                  print("item href: ${widget.products[index].productDetailHref}");
+                  _getProductDetailOnTap(widget.products[index].productDetailHref);
                 },
               ),
             );

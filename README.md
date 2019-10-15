@@ -1,6 +1,6 @@
-# ebay_challenge
+# ebay_item_viewer
 
-A new Flutter project.
+eBay Item Viewer is mobile native application that takes in the eBay Buy/Browse API to return a list of items which then forward to item detail screens.
 
 ## Getting Started
 
