@@ -76,6 +76,7 @@ class _ProductListState extends State<ProductList>{
     return Scaffold (
       appBar: AppBar(
         title: Text('Showing results for "${widget.searchInput}"'),
+        backgroundColor: Colors.grey[850],
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.search),

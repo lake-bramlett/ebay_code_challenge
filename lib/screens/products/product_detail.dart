@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import '../home.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class ProductDetail extends StatefulWidget {
 
@@ -43,6 +44,7 @@ class _ProductDetailState extends State<ProductDetail> {
     print(widget.product.description);
     return Scaffold (
       appBar: AppBar(
+        backgroundColor: Colors.grey[850],
         title: Text('Back to "${widget.productTerm}" results'),
         actions: <Widget>[
           IconButton(
@@ -85,15 +87,44 @@ class _ProductDetailState extends State<ProductDetail> {
             child: 
             Padding(
               padding: EdgeInsets.all(20.0),
-              child: GestureDetector(
-                onTap: () {
-                  _getNextProductImage();
-                },
-                child: Image.network(widget.productImage),
-              ),
+              child: Column(
+                children:[
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     _getNextProductImage();
+                  //   },
+                  //   child: Image.network(widget.productImage),
+                  // ),
+                  CarouselSlider(
+                    height: 400.0,
+                    items: [widget.product.initialImageUrl, ...widget.product.moreImageUrls].map((i) {
+                      return Builder(
+                        builder: (BuildContext context) {
+                          return Container(
+                            width: MediaQuery.of(context).size.width,
+                            margin: EdgeInsets.symmetric(horizontal: 5.0),
+                            decoration: BoxDecoration(
+                              color: Colors.grey[850]
+                            ),
+                            child: Image.network(i)
+                          );
+                        },
+                      );
+                    }).toList(),
+                  ),
+                  Text(
+                    "Slide for more photos",
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 15,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+              ]
             )
           ),
-          ],
+          )],
         ),
       );
   }
