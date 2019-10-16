@@ -100,7 +100,7 @@ class _ProductListState extends State<ProductList>{
             return Card (
               child: ListTile(
                 title: Text(widget.products[index].title),
-                subtitle: Text(widget.products[index].id),
+                subtitle: Text(widget.products[index].id), 
                 trailing: Image.network(widget.products[index].imageUrl,),
                 onTap: () {
                   print("item href: ${widget.products[index].productDetailHref}");

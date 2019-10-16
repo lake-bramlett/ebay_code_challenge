@@ -9,7 +9,7 @@ class ProductDetail extends StatefulWidget {
   final product;
   final productTerm;
   var productImage;
-  int imageIndex = 0;
+  // int imageIndex = 0; // Uncomment for image by tap functionality
 
   ProductDetail({Key key, this.product, this.productTerm, this.productImage}) : super(key: key);
 
@@ -19,24 +19,25 @@ class ProductDetail extends StatefulWidget {
 
 class _ProductDetailState extends State<ProductDetail> {
 
-  @override
 
-  _getNextProductImage() {
-    if(widget.imageIndex != widget.product.moreImageUrls.length -1){
-      print(widget.product.moreImageUrls);
-      print('next image url: ${widget.product.moreImageUrls[widget.imageIndex]}');
-      setState(() {
-        widget.productImage = widget.product.moreImageUrls[widget.imageIndex];
-        print(widget.productImage);
-      });
-      widget.imageIndex += 1; 
-    } else {
-      setState(() {
-        widget.productImage = widget.product.initialImageUrl;
-      });
-      widget.imageIndex = 0;
-    }
-  }
+  // method for cycling through images by tap gesture
+  //
+  // _getNextProductImage() {
+  //   if(widget.imageIndex != widget.product.moreImageUrls.length -1){
+  //     print(widget.product.moreImageUrls);
+  //     print('next image url: ${widget.product.moreImageUrls[widget.imageIndex]}');
+  //     setState(() {
+  //       widget.productImage = widget.product.moreImageUrls[widget.imageIndex];
+  //       print(widget.productImage);
+  //     });
+  //     widget.imageIndex += 1; 
+  //   } else {
+  //     setState(() {
+  //       widget.productImage = widget.product.initialImageUrl;
+  //     });
+  //     widget.imageIndex = 0;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +76,11 @@ class _ProductDetailState extends State<ProductDetail> {
               ),
             ),
           ),
+          Divider(
+            color: Colors.grey[850],
+            indent: 30.0,
+            endIndent: 30.0,
+          ),
           Container(child:
             Padding(
               padding: EdgeInsets.all(14.0),
@@ -89,6 +95,8 @@ class _ProductDetailState extends State<ProductDetail> {
               padding: EdgeInsets.all(20.0),
               child: Column(
                 children:[
+                  //uncomment code below to enable image change on tap
+                  //
                   // GestureDetector(
                   //   onTap: () {
                   //     _getNextProductImage();
@@ -96,7 +104,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   //   child: Image.network(widget.productImage),
                   // ),
                   CarouselSlider(
-                    height: 400.0,
+                    height: 300.0,
                     items: [widget.product.initialImageUrl, ...widget.product.moreImageUrls].map((i) {
                       return Builder(
                         builder: (BuildContext context) {
@@ -106,7 +114,29 @@ class _ProductDetailState extends State<ProductDetail> {
                             decoration: BoxDecoration(
                               color: Colors.grey[850]
                             ),
-                            child: Image.network(i)
+                            child: Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        content: Container(
+                                          height: 400.0,
+                                          width: 400.0,
+                                          child: FittedBox(
+                                            child: Image.network(i),
+                                            fit: BoxFit.fitWidth,
+                                          )
+                                        )
+                                      );
+                                    }
+                                  );
+                                },
+                                child: Image.network(i),
+                              ),
+                            ),
                           );
                         },
                       );
@@ -121,8 +151,13 @@ class _ProductDetailState extends State<ProductDetail> {
                     ),
                     textAlign: TextAlign.center,
                   ),
+                  Divider(
+                    color: Colors.grey[850],
+                    indent: 30.0,
+                    endIndent: 30.0,
+                  ),
               ]
-            )
+            ),
           ),
           )],
         ),
