@@ -31,7 +31,7 @@ _'eBay Item Viewer' is a mobile native application designed to let users browse 
 
 ### Home/Search
 * The home page doubles as the primary search view.
-* Search operates by user inputting string data into seatch input field and pressing enter on their keyboard.
+* Search operates by user inputting string data into seatch input field and pressing enter/return on their mobile keyboard or tapping the search icon to the right of the text input.
 * Search takes user input to make an API call and fetch data that it then passes to the Product List screen.
 
 ### Product List

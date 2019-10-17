@@ -63,32 +63,6 @@ class _ProductDetailState extends State<ProductDetail> {
       ),
       body: ListView(
         children: <Widget>[
-          Container(child: 
-            Padding(
-              padding: EdgeInsets.all(14.0),
-              child: Text(
-                "${widget.product.title}",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          Divider(
-            color: Colors.grey[850],
-            indent: 30.0,
-            endIndent: 30.0,
-          ),
-          Container(child:
-            Padding(
-              padding: EdgeInsets.all(14.0),
-              child: Text(
-                "${widget.product.description}",
-              ),
-            ),
-          ),
           Container(
             child: 
             Padding(
@@ -143,7 +117,7 @@ class _ProductDetailState extends State<ProductDetail> {
                     }).toList(),
                   ),
                   Text(
-                    "Slide for more photos",
+                    "Swipe for more photos",
                     style: TextStyle(
                       fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.w300,
@@ -151,15 +125,70 @@ class _ProductDetailState extends State<ProductDetail> {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  Divider(
-                    color: Colors.grey[850],
-                    indent: 30.0,
-                    endIndent: 30.0,
-                  ),
               ]
             ),
           ),
-          )],
+          ),
+          Container(child: 
+            Padding(
+              padding: EdgeInsets.all(14.0),
+              child: Text(
+                "${widget.product.title}",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          Divider(
+            color: Colors.grey[850],
+            indent: 30.0,
+            endIndent: 30.0,
+          ),
+          Container(
+            child: Padding(
+              padding: EdgeInsets.all(14.0),
+              child: Column(children: <Widget>[
+                Text(
+                  widget.product.description,
+                ),
+                Row(children: <Widget>[
+                  Text(
+                    "Price: ",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    )
+                  ),
+                  Text(
+                    widget.product.value
+                  ),
+                  Text(
+                    widget.product.currency
+                  ),
+                ],),
+                Row(children: <Widget>[
+                  Text(
+                    "Location: ",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    )
+                  ),
+                  Text(
+                    "${widget.product.city}, "
+                  ),
+                  Text(
+                    "${widget.product.state}, "
+                  ),
+                  Text(
+                    widget.product.country
+                  ),
+                ],)
+              ],)
+            ),
+          ),
+          ],
         ),
       );
   }

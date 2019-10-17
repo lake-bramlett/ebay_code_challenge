@@ -5,6 +5,9 @@ import './api.dart';
 
 
 class SearchBar extends StatefulWidget {
+
+  var searchInput;
+
   @override
   SearchBarState createState() => new SearchBarState();
 }
@@ -13,15 +16,30 @@ class SearchBarState extends State<SearchBar> {
   
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      onSubmitted: (inputValue) { _searchAndRedirect(inputValue); },
-      decoration: InputDecoration(
-        fillColor: Colors.white,
-        filled: true,
-        border: InputBorder.none,
-        hintText: 'Search Products'
-      )
-    );
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+      Container(
+        margin: EdgeInsets.only(right: 10.0),
+        width: 300.0,
+        child: TextField(
+          onSubmitted: (inputValue) { _searchAndRedirect(inputValue); print(widget.searchInput); },
+          onChanged: (inputValue) { widget.searchInput = inputValue; },
+          decoration: InputDecoration(
+            fillColor: Colors.white,
+            filled: true,
+            border: InputBorder.none,
+            hintText: 'Search Items'
+          )
+        ),
+      ),
+      GestureDetector(
+        child: Icon(
+          Icons.search,
+          color: Colors.white),
+        onTap: () { _searchAndRedirect(widget.searchInput); }
+        )
+    ],);
   }
 
   void _searchAndRedirect(input) async {

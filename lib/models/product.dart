@@ -49,17 +49,17 @@ class Product {
       moreImageUrls = json[keyMoreImageUrls].map((url) => url["imageUrl"]).toList();
     }
 
-     var value = json["price"]["value"];
-     var currency = json["price"]["currency"];
+     var value = "unknown";
+     var currency = "";
 
-    //  if(json[keyPrice] != null){
-    //    if(json[keyPrice][keyPriceValue] != null) {
-    //      value = json[keyPrice][keyPriceValue];
-    //    }
-    //    if(json[keyPrice][keyPriceCurrency] != null) {
-    //      currency = json[keyPrice][keyPriceCurrency];
-    //    }
-    //  }
+     if(json[keyPrice] != null){
+       if(json[keyPrice][keyPriceValue] != null) {
+         value = json[keyPrice][keyPriceValue];
+       }
+       if(json[keyPrice][keyPriceCurrency] != null) {
+         currency = json[keyPrice][keyPriceCurrency];
+       }
+     }
   
      var city = "unknown";
      var state = "";
