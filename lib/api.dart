@@ -92,7 +92,7 @@ class Api {
       var data = json.decode(response.body);
       var nextUrl = data["next"];
       // converts data into a List<ProductPreview>
-      productDataList = data["itemSummaries"].map<ProductPreview>((productPreview) => ProductPreview(productPreview["title"], productPreview["itemId"], productPreview["image"]["imageUrl"], productPreview["itemHref"])).toList();
+      productDataList = data["itemSummaries"].map<ProductPreview>((productPreview) => ProductPreview(productPreview["title"], productPreview["itemId"], productPreview["image"]["imageUrl"], productPreview["price"]["value"], productPreview["price"]["currency"], productPreview["itemHref"])).toList();
       print("get ready for productDataList");
       print(productDataList);
       return QueryResult(productDataList, nextUrl);

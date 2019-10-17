@@ -2,6 +2,8 @@ class ProductPreview {
   final String title;
   final String id;
   final String imageUrl;
+  final String value;
+  final String currency;
   final String productDetailHref;
 
 
@@ -9,12 +11,17 @@ class ProductPreview {
   static const String keyId = "itemId";
   static const String keyImage = "image";
   static const String keyImageUrl = "imageUrl";
+  static const String keyPrice = "price";
+  static const String keyPriceValue = "value";
+  static const String keyPriceCurrency = "currency";
   static const String keyProductDetailHref = "itemHref";
 
   ProductPreview(
     this.title, 
     this.id, 
     this.imageUrl,
+    this.value,
+    this.currency,
     this.productDetailHref,
     );
 
@@ -30,22 +37,28 @@ class ProductPreview {
        imageUrl = json[keyImage][keyImageUrl];
      }
 
+     var value = "unknown";
+     var currency = "";
+
+     if(json[keyPrice] != null){
+       if(json[keyPrice][keyPriceValue] != null) {
+         value = json[keyPrice][keyPriceValue];
+       }
+       if(json[keyPrice][keyPriceCurrency] != null) {
+         currency = json[keyPrice][keyPriceCurrency];
+       }
+     }
+
      var productDetailHref = json[keyProductDetailHref];
   
      return ProductPreview(
        title, 
        id,
        imageUrl,
+       value,
+       currency,
        productDetailHref,
      );
    }
-    
-
-  Map<String, dynamic> toJson() =>
-    {
-      'tite': title,
-      'id': id,
-      'imageUrl': imageUrl,
-      'productDetailHref': productDetailHref,
-    };
+  
 }

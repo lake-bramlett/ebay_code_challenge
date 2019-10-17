@@ -17,8 +17,8 @@ _'eBay Item Viewer' is a mobile native application designed to let users browse 
 * _Execute `flutter pub global` in the command line_
 * _Create a `.env` file in the surface level of the project directory_
 * _In the `.env` store your eBay developer account client ID and client secret (https://developer.ebay.com/my/keys) repsectively as `CLIENT_ID` and `CLIENT_SECRET`_ 
-* _Open up either Xcode SDK or Android Developer SDK and emulate a mobile device of your choosing_
-* _In the terminal run `flutter run` to build application to currenctly available mobile device._
+* _Open up either Xcode SDK or Android Developer SDK and start a virtual mobile device of your choosing_
+* _In the terminal run `flutter run` to build application to currently available mobile device._
 * _Use preferred text editor to edit_
 * _Make any pull requests to https://github.com/lake-bramlett/ebay_code_challenge ._
 
