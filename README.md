@@ -13,25 +13,23 @@ _'eBay Item Viewer' is a mobile native application designed to let users browse 
 * Install Flutter (https://flutter.dev/docs/get-started/install)
 * Register for an eBay developer account (https://developer.ebay.com) -- this may take a day or two to process.
 * _Clone https://github.com/lake-bramlett/ebay_code_challenge repo locally_
-* _In the command line, navigate to the clone repo_
+* _In the command line, navigate to the cloned repo_
 * _Execute `flutter pub global` in the command line_
 * _Create a `.env` file in the surface level of the project directory_
 * _In the `.env` store your eBay developer account client ID and client secret (https://developer.ebay.com/my/keys) repsectively as `CLIENT_ID` and `CLIENT_SECRET`_ 
 * _Open up either Xcode SDK or Android Developer SDK and start a virtual mobile device of your choosing_
 * _In the terminal run `flutter run` to build application to currently available mobile device._
-* _Use preferred text editor to edit_
-* _Make any pull requests to https://github.com/lake-bramlett/ebay_code_challenge ._
 
 ## Specs
 
 ### Users
 * No need for user login.
 * Users can begin search for products using words or terms of their choosing.
-* Users can click on a particular item to see more details pertaining to said item.
+* Users can tap on a particular item to see more details pertaining to said item.
 
 ### Home/Search
 * The home page doubles as the primary search view.
-* Search operates by user inputting string data into seatch input field and pressing enter/return on their mobile keyboard or tapping the search icon to the right of the text input.
+* Search operates by user inputting string data into seach input field and tapping enter/return on their mobile keyboard or tapping the search icon to the right of the text input.
 * Search takes user input to make an API call and fetch data that it then passes to the Product List screen.
 
 ### Product List

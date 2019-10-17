@@ -28,12 +28,9 @@ class Api {
 
   // get oauth token
   static Future<String> getToken() async {
-    print("step one");
     if(_token != null){
-      print("t1");
       return _token;
     }
-    print("t1.5");
     var url = Uri.encodeFull(ApiConfig.baseUrl + "/identity/v1/oauth2/token");
     print(url);
     var response = await http.post(
@@ -47,19 +44,16 @@ class Api {
         'scope': 'https://api.ebay.com/oauth/api_scope'
       }
     );
-    print("t2");
 
     print("token response: ${response.statusCode}");
     print(response.body);
     
     if (response.statusCode == 200) {
-      print("t3");
       var data = json.decode(response.body);
       var newToken = data["access_token"];
       _token = newToken;
       return _token;
     } else {
-      print("t4");
       throw("failed to get token. status code: ${response.statusCode}");
     }
 
@@ -93,7 +87,6 @@ class Api {
       var nextUrl = data["next"];
       // converts data into a List<ProductPreview>
       productDataList = data["itemSummaries"].map<ProductPreview>((productPreview) => ProductPreview(productPreview["title"], productPreview["itemId"], productPreview["image"]["imageUrl"], productPreview["price"]["value"], productPreview["price"]["currency"], productPreview["itemHref"])).toList();
-      print("get ready for productDataList");
       print(productDataList);
       return QueryResult(productDataList, nextUrl);
     } else {

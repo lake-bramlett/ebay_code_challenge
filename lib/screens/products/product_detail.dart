@@ -9,7 +9,6 @@ class ProductDetail extends StatefulWidget {
   final product;
   final productTerm;
   var productImage;
-  // int imageIndex = 0; // Uncomment for image by tap functionality
 
   ProductDetail({Key key, this.product, this.productTerm, this.productImage}) : super(key: key);
 
@@ -18,26 +17,6 @@ class ProductDetail extends StatefulWidget {
 }
 
 class _ProductDetailState extends State<ProductDetail> {
-
-
-  // method for cycling through images by tap gesture
-  //
-  // _getNextProductImage() {
-  //   if(widget.imageIndex != widget.product.moreImageUrls.length -1){
-  //     print(widget.product.moreImageUrls);
-  //     print('next image url: ${widget.product.moreImageUrls[widget.imageIndex]}');
-  //     setState(() {
-  //       widget.productImage = widget.product.moreImageUrls[widget.imageIndex];
-  //       print(widget.productImage);
-  //     });
-  //     widget.imageIndex += 1; 
-  //   } else {
-  //     setState(() {
-  //       widget.productImage = widget.product.initialImageUrl;
-  //     });
-  //     widget.imageIndex = 0;
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -69,14 +48,6 @@ class _ProductDetailState extends State<ProductDetail> {
               padding: EdgeInsets.all(20.0),
               child: Column(
                 children:[
-                  //uncomment code below to enable image change on tap
-                  //
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     _getNextProductImage();
-                  //   },
-                  //   child: Image.network(widget.productImage),
-                  // ),
                   CarouselSlider(
                     height: 300.0,
                     items: [widget.product.initialImageUrl, ...widget.product.moreImageUrls].map((i) {
